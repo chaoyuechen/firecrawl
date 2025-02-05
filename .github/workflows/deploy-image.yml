@@ -2,7 +2,6 @@ name: Deploy Images to GHCR
 
 env:
   DOTNET_VERSION: '6.0.x'
-  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
 on:
   push:
@@ -25,9 +24,9 @@ jobs:
             with:
               registry: ghcr.io
               username: ${{github.actor}}
-              password: ${{secrets.GITHUB_TOKEN}}
+              password: ${{secrets.GH_TOKEN}}
 
           - name: 'Build Inventory Image'
             run: |
-              docker build . --tag ghcr.io/mendableai/firecrawl:latest --secret id=SENTRY_AUTH_TOKEN
-              docker push ghcr.io/mendableai/firecrawl:latest
+              docker build . --tag ghcr.io/chaoyuechen/firecrawl:latest
+              docker push ghcr.io/chaoyuechen/firecrawl:latest
