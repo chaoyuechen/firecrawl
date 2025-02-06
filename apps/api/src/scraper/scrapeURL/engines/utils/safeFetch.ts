@@ -65,7 +65,7 @@ export function makeSecureDispatcher(
           ? isIPv4Private(socket.remoteAddress!)
           : isIPv6Private(socket.remoteAddress!)
       ) {
-        socket.destroy(new InsecureConnectionError());
+        // socket.destroy(new InsecureConnectionError());
       }
     }
   });
