@@ -1,7 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import { SearchResult } from "../../src/lib/entities";
-import { logger } from "../lib/logger"
+import { logger } from "../lib/logger";
 
 dotenv.config();
 
@@ -26,14 +26,14 @@ export async function searxng_search(
     // location: options.location, //not possible with SearXNG
     // num: options.num_results, //not possible with SearXNG
     engines: process.env.SEARXNG_ENGINES || "",
-    categories: process.env.SEARXNG_CATEGORIES || "general",
+    categories: process.env.SEARXNG_CATEGORIES || "",
     pageno: options.page ?? 1,
-    format: "json"
+    format: "json",
   };
 
   const url = process.env.SEARXNG_ENDPOINT!;
   // Remove trailing slash if it exists
-  const cleanedUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+  const cleanedUrl = url.endsWith("/") ? url.slice(0, -1) : url;
 
   // Concatenate "/search" to the cleaned URL
   const finalUrl = cleanedUrl + "/search";
