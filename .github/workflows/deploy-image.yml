@@ -4,11 +4,6 @@ env:
   DOTNET_VERSION: '6.0.x'
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - apps/api/**
   workflow_dispatch:
 
 jobs:
@@ -29,13 +24,13 @@ jobs:
             with:
               registry: ghcr.io
               username: ${{github.actor}}
-              password: ${{secrets.GITHUB_TOKEN}}
+              password: ${{secrets.GH_TOKEN}}
 
           - name: 'Build and Push Image'
             uses: docker/build-push-action@v6
             with:
               context: ./apps/api
               push: true
-              tags: ghcr.io/firecrawl/firecrawl:latest
-              cache-from: type=registry,ref=ghcr.io/firecrawl/firecrawl:buildcache
-              cache-to: type=registry,ref=ghcr.io/firecrawl/firecrawl:buildcache,mode=max
+              tags: ghcr.io/chaoyuechen/firecrawl:latest
+              cache-from: type=registry,ref=ghcr.io/chaoyuechen/firecrawl:buildcache
+              cache-to: type=registry,ref=ghcr.io/chaoyuechen/firecrawl:buildcache,mode=max
